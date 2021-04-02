@@ -42,7 +42,7 @@ public class CartController {
     }
 
     @GetMapping(value = "buy/{id}")
-    public String buy(@PathVariable("id") int id, Model model, HttpSession session) {
+    public String buy(@PathVariable("id") int id, HttpSession session) {
 
         if (session.getAttribute("cart") == null) {
             List<Item> items = new ArrayList();
