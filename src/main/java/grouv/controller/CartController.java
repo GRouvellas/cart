@@ -129,6 +129,7 @@ public class CartController {
                         if (items.get(i).getQuality() == items.get(i + j).getQuality()) {
                             items.get(i).setQuantity(items.get(i).getQuantity() + items.get(i+j).getQuantity());
                             items.remove(i + j);
+                            j=j-1;
                         }
                     }
                 }
