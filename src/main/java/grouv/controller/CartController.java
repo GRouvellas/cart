@@ -30,11 +30,6 @@ public class CartController {
     @Autowired
     private ProductService productService;
 
-//    @GetMapping
-//    public String showCart(Model model) {
-//        model.addAttribute("products", productService.findAll());
-//        return "cart";
-//    }
     @GetMapping
     public String showCart(Model model, HttpSession session) {
         model.addAttribute("total", total(session));
@@ -51,14 +46,6 @@ public class CartController {
         } else {
             List<Item> items = (List<Item>) session.getAttribute("cart");
             items.add(new Item(productService.find(id), 1, 1));
-//            int index = checkIfExists(id, items);
-//            if (index == -1) {
-//                items.add(new Item(productService.find(id), 1, 1));
-//            } else {
-//            //check if quality exists 
-//                int quantity = items.get(index).getQuantity() + 1;
-//                items.get(index).setQuantity(quantity);
-//            }
         }
         return "redirect:/cart";
     }
@@ -89,14 +76,6 @@ public class CartController {
         return "redirect:/cart";
     }
 
-//    private int checkIfExists(int id, List<Item> items) {
-//        for (int i = 0; i < items.size(); i++) {
-//            if (items.get(i).getProduct().getId() == id) {
-//                return i;
-//            }
-//        }
-//        return -1;
-//    }
     private int checkIfExists(int id, float quality, int quantity, List<Item> items) {
         for (int i = 0; i < items.size(); i++) {
             if (items.get(i).getProduct().getId() == id) {
